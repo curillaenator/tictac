@@ -10,7 +10,7 @@ export const Display: FC = () => {
   return (
     <div className={styles.display}>
       <div className={styles.content}>
-        <h3>GOTY</h3>
+        <h3>MEGA GAME =)</h3>
 
         {winner && (
           <div className={styles.winner}>
