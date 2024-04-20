@@ -1,0 +1,81 @@
+.cell {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 80px;
+  height: 80px;
+
+  box-shadow: inset 0 0 0 1px var(--app-bdc);
+
+  &_interactive {
+    cursor: pointer;
+  }
+
+  &_tac {
+    --o-c: var(--app-danger);
+
+    @mixin tacRender {
+      &::before {
+        content: '';
+        position: absolute;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        box-shadow: inset 0 0 0 8px var(--o-c);
+      }
+    }
+
+    @include tacRender;
+
+    &_h {
+      --o-c: var(--app-danger-h);
+
+      &:hover {
+        @include tacRender;
+      }
+    }
+  }
+
+  &_tic {
+    --stick-c: var(--app-primary);
+
+    @mixin stick {
+      content: '';
+      position: absolute;
+      width: 8px;
+      height: 68px;
+      border-radius: 4px;
+      top: 50%;
+      left: 50%;
+      background-color: var(--stick-c);
+    }
+
+    @mixin ticRender {
+      &::before {
+        @include stick;
+        transform: translate(-50%, -50%) rotate(-45deg);
+      }
+
+      &::after {
+        @include stick;
+        transform: translate(-50%, -50%) rotate(45deg);
+      }
+    }
+
+    @include ticRender();
+
+    &_h {
+      --stick-c: var(--app-primary-h);
+
+      &:hover {
+        @include ticRender();
+      }
+    }
+  }
+}
