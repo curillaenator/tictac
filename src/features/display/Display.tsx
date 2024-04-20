@@ -5,7 +5,7 @@ import { $tictacContext } from '@src/context';
 import styles from './display.module.scss';
 
 export const Display: FC = () => {
-  const { winner, setGame, setWinner } = useContext($tictacContext);
+  const { winner, setGame, setWinner, setLine } = useContext($tictacContext);
 
   return (
     <div className={styles.display}>
@@ -25,6 +25,7 @@ export const Display: FC = () => {
         disabled={!winner}
         onClick={() => {
           setWinner(null);
+          setLine([]);
           setGame({ key: 0, payload: 'tac', reset: true });
         }}
       >

@@ -24,15 +24,16 @@ const HOR = [
 
 export const checkMappedWins = (i: number, tictac: 'tic' | 'tac', game: State) =>
   HOR.map((lines) =>
-    lines
-      .map((n) => {
-        const target = i + n;
+    lines.map((n) => {
+      const target = i + n;
 
-        if (n === 0) return tictac;
-        if (i + n < 0) return game[target + 64] === tictac ? tictac : null;
-        if (i + n > 63) return game[target - 64] === tictac ? tictac : null;
+      if (n === 0) return [i, tictac];
 
-        return game[target] === tictac ? tictac : null;
-      })
-      .every((v) => v === tictac),
-  ).some(Boolean);
+      if (i + n < 0) return game[target + 64] === tictac ? [target + 64, tictac] : null;
+      if (i + n > 63) return game[target - 64] === tictac ? [target - 64, tictac] : null;
+
+      return game[target] === tictac ? [target, tictac] : null;
+    }),
+  )
+    .filter((map) => map.every((v) => v?.[1] === tictac))
+    .flat();

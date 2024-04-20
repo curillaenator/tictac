@@ -12,7 +12,7 @@ interface CellProps {
 
 export const Cell: FC<CellProps> = (props) => {
   const { fieldIndex } = props;
-  const { setTic, tic, setGame, game, setWinner, winner } = useContext($tictacContext);
+  const { setTic, tic, setGame, game, setWinner, winner, setLine, line } = useContext($tictacContext);
 
   return (
     <button
@@ -21,7 +21,12 @@ export const Cell: FC<CellProps> = (props) => {
       disabled={!!winner}
       onClick={() => {
         if (!game[fieldIndex]) {
-          if (checkMappedWins(fieldIndex, tic ? 'tic' : 'tac', game)) setWinner(tic ? 'tic' : 'tac');
+          const foundLine = checkMappedWins(fieldIndex, tic ? 'tic' : 'tac', game);
+
+          if (foundLine.length) {
+            setWinner(tic ? 'tic' : 'tac');
+            setLine(foundLine.map((v) => v?.[0] as number) as number[]);
+          }
 
           setGame({ key: fieldIndex, payload: tic ? 'tic' : 'tac' });
           setTic(!tic);
@@ -35,6 +40,8 @@ export const Cell: FC<CellProps> = (props) => {
 
         [styles.cell_tic_h]: tic && !game[fieldIndex] && !winner,
         [styles.cell_tac_h]: !tic && !game[fieldIndex] && !winner,
+
+        [styles.cell_winline]: line.includes(fieldIndex),
       })}
     />
   );

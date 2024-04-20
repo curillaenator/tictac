@@ -11,6 +11,8 @@ interface TictacContext {
   setGame: Dispatch<Action>;
   winner: null | 'tic' | 'tac';
   setWinner: Dispatch<SetStateAction<null | 'tic' | 'tac'>>;
+  line: number[];
+  setLine: Dispatch<SetStateAction<number[]>>;
 }
 
 export const $tictacContext = createContext<TictacContext>({
@@ -20,4 +22,6 @@ export const $tictacContext = createContext<TictacContext>({
   setGame: () => {},
   winner: null,
   setWinner: () => {},
+  line: [],
+  setLine: () => {},
 });

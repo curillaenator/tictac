@@ -13,8 +13,10 @@ type Action = { key: number; payload: Payload; reset: boolean };
 
 // tic is player me, tac is opponent
 export const Tictac: FC = () => {
-  const [winner, setWinner] = useState<null | 'tic' | 'tac'>(null);
   const [tic, setTic] = useState<boolean>(true);
+
+  const [winner, setWinner] = useState<null | 'tic' | 'tac'>(null);
+  const [line, setLine] = useState<number[]>([]);
 
   const [game, setGame] = useReducer((s: State, a: Action): State => {
     if (!a.reset) return { ...s, [a.key]: a.payload };
@@ -28,11 +30,13 @@ export const Tictac: FC = () => {
           game,
           tic,
           winner,
+          line,
+          setLine,
           setTic,
           setGame,
           setWinner,
         }),
-        [game, tic, setTic, setGame, winner],
+        [game, tic, setTic, setGame, winner, line, setLine],
       )}
     >
       <div className={styles.container}>
