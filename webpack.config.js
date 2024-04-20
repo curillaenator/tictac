@@ -1,7 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Dotenv = require('dotenv-webpack');
 
@@ -31,15 +31,15 @@ module.exports = {
 
     new CleanWebpackPlugin(),
 
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, './src/public'),
-          to: '',
-          globOptions: { ignore: ['*.DS_Store'] },
-        },
-      ],
-    }),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {
+    //       from: path.resolve(__dirname, './src/public'),
+    //       to: '',
+    //       globOptions: { ignore: ['*.DS_Store'] },
+    //     },
+    //   ],
+    // }),
 
     new Dotenv(),
   ],
@@ -56,15 +56,17 @@ module.exports = {
     rules: [
       {
         test: /\.(scss|css|sass)$/i,
-        exclude: /node_modules/,
         use: [
           MiniCssExtractPlugin.loader,
           {
             loader: 'css-loader',
             options: {
-              modules: { localIdentName: '[local]_[hash:base64:6]' },
+              modules: {
+                localIdentName: '[local]_[hash:base64:6]',
+              },
             },
           },
+          'sass-loader',
         ],
       },
       {
@@ -75,7 +77,23 @@ module.exports = {
       {
         test: /\.svg$/i,
         exclude: /node_modules/,
-        use: ['@svgr/webpack'],
+        // use: ['@svgr/webpack'],
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              icon: true,
+              svgoConfig: {
+                plugins: [
+                  {
+                    name: 'convertColors',
+                    params: { currentColor: true },
+                  },
+                ],
+              },
+            },
+          },
+        ],
       },
       {
         test: /\.(js|jsx|ts|tsx)$/i,

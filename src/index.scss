@@ -1,18 +1,30 @@
-:root::-webkit-scrollbar {
-  width: 8px;
-  margin-left: 4px;
-  border-radius: 4px;
-  background-color: var(--scrollbar-track, trasparent);
+@font-face {
+  font-family: 'SanFrancisco';
+  src: url('./assets/SFNSRounded.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
 }
 
-:root::-webkit-scrollbar-thumb {
-  border-radius: 4px;
-  background-color: var(--scrollbar-thumb, #6060ff);
+:root {
+  &::-webkit-scrollbar {
+    width: 8px;
+    background-color: var(--scrollbar-track, trasparent);
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 8px;
+    border-radius: 4px;
+    background-color: var(--scrollbar-thumb, #6060ff);
+  }
 }
 
 *,
 *::after,
 *::before {
+  font-family: 'SanFrancisco', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+
   box-sizing: border-box;
   margin: 0;
   padding: 0;

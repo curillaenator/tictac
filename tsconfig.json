@@ -25,7 +25,7 @@
 
     "isolatedModules": true,
     "noImplicitOverride": true,
-    "types": ["react"],
+    // "types": ["react"],
 
     "rootDir": ".",
     "baseUrl": ".",
