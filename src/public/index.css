@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'SanFrancisco';
-  src: url('./assets/SFNSRounded.woff2') format('woff2');
+  src: url('./SFNSRounded.woff2') format('woff2');
   font-weight: 400;
   font-style: normal;
 }
@@ -28,12 +28,16 @@
   --app-danger-h: #ff404052;
 
   --app-c: #0a0a0a;
+  --app-c-colored: #ffffff;
+  --app-c-db: #7a7a7a;
+
+  background-color: var(--app-bgc-colored);
 }
 
 *,
 *::after,
 *::before {
-  font-family: 'SanFrancisco', sans-serif;
+  font-family: SanFrancisco, sans-serif;
   font-size: 16px;
   font-weight: 400;
 
@@ -44,10 +48,12 @@
 }
 
 button {
+  font-family: SanFrancisco, sans-serif;
   outline: none;
   background-color: transparent;
   border: none;
   cursor: pointer;
+  padding: 8px;
 }
 
 input {

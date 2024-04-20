@@ -1,0 +1,45 @@
+.display {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  width: 320px;
+  height: 640px;
+
+  background-color: var(--app-bgc);
+  border-radius: 12px;
+  box-shadow: inset 0 0 0 2px var(--app-bdc);
+  overflow: hidden;
+
+  padding: 24px;
+
+  .content {
+    flex-grow: 2;
+
+    h3 {
+      font-weight: 800;
+      font-size: 24px;
+      margin-bottom: 24px;
+    }
+
+    .winner {
+      h3 {
+        margin-bottom: 12px;
+      }
+    }
+  }
+
+  .button {
+    --button-bgc: var(--app-primary);
+    --button-c: var(--app-c-colored);
+
+    background-color: var(--button-bgc);
+    border-radius: 6px;
+    color: var(--button-c);
+
+    &:disabled {
+      --button-bgc: var(--app-bgc-colored);
+      --button-c: var(--app-c-db);
+    }
+  }
+}
