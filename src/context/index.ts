@@ -1,8 +1,14 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
 
-type Payload = null | 'tic' | 'tac';
-type Action = { key: number; payload: Payload; reset?: boolean };
-export type State = Record<number, Payload>;
+type Payload = {
+  tictac: 'tic' | 'tac';
+  fieldPosition: 'top' | 'bottom' | 'left' | 'right' | 'middle' | 'tl' | 'tr' | 'br' | 'bl';
+  reset?: boolean;
+};
+
+type Action = { key: number; payload: Payload | null };
+
+type State = Record<number, Payload | null>;
 
 interface TictacContext {
   tic: boolean;
@@ -15,7 +21,7 @@ interface TictacContext {
   setLine: Dispatch<SetStateAction<number[]>>;
 }
 
-export const $tictacContext = createContext<TictacContext>({
+const $tictacContext = createContext<TictacContext>({
   tic: true,
   setTic: () => {},
   game: {},
@@ -25,3 +31,5 @@ export const $tictacContext = createContext<TictacContext>({
   line: [],
   setLine: () => {},
 });
+
+export { $tictacContext, type State, type Payload, type Action };

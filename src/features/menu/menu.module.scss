@@ -1,0 +1,34 @@
+.menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 16px;
+
+  height: 100vh;
+  max-width: 768px;
+  margin: 0 auto;
+
+  & > li {
+    list-style-type: none;
+    background-color: var(--app-bgc);
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px var(--app-bdc);
+
+    &:hover a {
+      color: var(--app-primary);
+    }
+
+    &:active a {
+      color: var(--app-primary-h);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--app-c);
+  }
+}

@@ -26,7 +26,14 @@ export const Display: FC = () => {
         onClick={() => {
           setWinner(null);
           setLine([]);
-          setGame({ key: 0, payload: 'tac', reset: true });
+          setGame({
+            key: 0,
+            payload: {
+              fieldPosition: 'tl',
+              tictac: 'tac',
+              reset: true,
+            },
+          });
         }}
       >
         Reset
